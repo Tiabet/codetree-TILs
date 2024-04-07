@@ -1,4 +1,4 @@
 a=5.26
 b=8.27
 
-print(round(a*b,5))
+print("{:1}".format(a*b))
