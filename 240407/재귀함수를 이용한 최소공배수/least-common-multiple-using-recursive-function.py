@@ -12,7 +12,7 @@ def gcd(a,lst):
         lst[a+1] = lst[a]*lst[a+1]//mini
         return gcd(a+1,lst)
     elif a == len(lst)-1 :
-        return lst[-2]
+        return lst[-1]
 
 
 print(gcd(0,lst))
