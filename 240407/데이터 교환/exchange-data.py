@@ -1,10 +1,10 @@
-a=5
-b=6
-c=7
+tmp_a=5
+tmp_b=6
+tmp_c=7
 
-b=a
-c=b
-a=c
+b=tmp_a
+c=tmp_b
+a=tmp_c
 
 print(a)
 print(b)
