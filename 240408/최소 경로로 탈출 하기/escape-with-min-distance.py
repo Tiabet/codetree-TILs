@@ -36,4 +36,7 @@ def bfs():
 
 push(0,0,0)
 bfs()
-print(step[X-1][Y-1])
+if step[X-1][Y-1] == 0 :
+    print(-1)
+else :
+    print(step[X-1][Y-1])
