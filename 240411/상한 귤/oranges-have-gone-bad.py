@@ -16,7 +16,7 @@ def in_range(x,y):
 def can_go(x,y):
     if not in_range(x,y):
         return False
-    if visited[x][y] != 0 or graph[x][y] !=1:
+    if visited[x][y] != 0 or graph[x][y] ==0 or graph[x][y] == 2:
         return False
     return True
 
@@ -45,13 +45,15 @@ def bfs(x,y):
                 answer[new_x][new_y] = count
                 visited[new_x][new_y] = 1
         count+=1
+
+    for i in range(n):
+        for j in range(n):
+            visited[i][j] = 0
             
 for i in range(n):
     for j in range(n):
         if graph[i][j] == 2 :
             bfs(i,j)
 
-for i in range(n):
-    for j in range(n):
-        print(answer[i][j], end = " ")
-    print()
+for i in answer :
+    print(*i)
