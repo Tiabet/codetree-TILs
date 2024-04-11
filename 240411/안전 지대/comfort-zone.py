@@ -58,9 +58,9 @@ while K<100:
 
                 count+=1
     
-    result.append((count,K))
+    result.append((K,count))
 
 
-result = sorted(result, key = lambda x : (-x[0],x[1]))
+result = sorted(result, key = lambda x : (x[1],-x[0]))
 
-print(result[0][0], result[0][1])
+print(result[-1][0], result[-1][1])
