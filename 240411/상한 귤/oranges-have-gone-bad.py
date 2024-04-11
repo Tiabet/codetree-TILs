@@ -27,8 +27,6 @@ for i in range(n):
 
 queue = []
 def bfs(x,y):
-    count = 1
-
     queue.append((x,y))
     answer[x][y] = 0
     visited[x][y] = 1
@@ -42,9 +40,9 @@ def bfs(x,y):
 
             if can_go(new_x, new_y):
                 queue.append((new_x,new_y))
-                answer[new_x][new_y] = count
+                answer[new_x][new_y] = answer[x][y]+1
                 visited[new_x][new_y] = 1
-        count+=1
+        
 
     for i in range(n):
         for j in range(n):
