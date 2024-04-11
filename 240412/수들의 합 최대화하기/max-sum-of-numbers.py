@@ -12,13 +12,13 @@ tmp = 0
 def choose(idx,count):
 
     global tmp, result
-    if count==4 :
+    if count==n+1:
         result = max(result,tmp)
         return
     arr = nums[idx]
     
 
-    for i in range(3):
+    for i in range(n):
         if visited[i] == True :
             continue 
 
