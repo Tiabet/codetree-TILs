@@ -1,57 +1,62 @@
-n, k = map(int, input().split())
+n, m = tuple(map(int, input().split()))
 
-graph = []
-for _ in range(n):
-    graph.append(list(map(int, input().split())))
+rots = []
 
-dxs, dys = [0,0,1,-1], [1,-1,0,0]
+a = [
+    list(map(int, input().split()))
+    for _ in range(n)
+]
 
-visited = [[0 for _ in range(n)] for _ in range(n)]
-
-answer = [[-2 for _ in range(n)] for _ in range(n)]
-
-def in_range(x,y):
-    return 0<=x<n and 0<=y<n
-
-def can_go(x,y):
-    if not in_range(x,y):
-        return False
-    if visited[x][y] != 0 or graph[x][y] ==0 or graph[x][y] == 2:
-        return False
-    return True
+def inRange(x, y):
+    return 0 <= x < n and 0 <= y < n
 
 for i in range(n):
     for j in range(n):
-        if graph[i][j] == 0 :
-            answer[i][j] = -1
+        if a[i][j] == 2:
+            rots.append((i, j))
 
-queue = []
-def bfs(x,y):
-    queue.append((x,y))
-    answer[x][y] = 0
-    visited[x][y] = 1
-    
-    while queue:
+visited = [
+    [0] * n
+    for _ in range(n)
+]
 
-        x,y = queue.pop(0)
+dist = [
+    [0] * n
+    for _ in range(n)
+]
+
+dxs, dys = [1,-1,0,0],[0,0,1,-1]
+
+def bfs():
+    while q:
+        x, y = q.popleft()
 
         for dx, dy in zip(dxs, dys):
-            new_x, new_y = x+dx, y+dy
+            nx, ny = x + dx, y + dy
 
-            if can_go(new_x, new_y):
-                queue.append((new_x,new_y))
-                answer[new_x][new_y] = answer[x][y]+1
-                visited[new_x][new_y] = 1
-        
+            if inRange(nx, ny) and not visited[nx][ny] and a[nx][ny] == 1:
+                q.append((nx, ny))
+                visited[nx][ny] = True
+                dist[nx][ny] = dist[x][y] + 1
+ 
 
-    for i in range(n):
-        for j in range(n):
-            visited[i][j] = 0
-            
+from collections import deque
+
+q = deque()
+for x, y in rots:
+    q.append((x, y))
+    visited[x][y] = False
+
+bfs()
+
 for i in range(n):
     for j in range(n):
-        if graph[i][j] == 2 :
-            bfs(i,j)
+        if a[i][j] == 0:
+            dist[i][j] = -1
+        elif a[i][j] == 2:
+            dist[i][j] = 0
+        elif a[i][j] == 1 and dist[i][j] == 0:
+            dist[i][j] = -2
 
-for i in answer :
-    print(*i)
+for i in range(n):
+    print(*dist[i])
