@@ -1,5 +1,5 @@
 n = int(input())
-visited = [False]*n+1 #생각하기 쉽게 visited 0을 없다고 치고 1부터 저장함
+visited = [False]*(n+1) #생각하기 쉽게 visited 0을 없다고 치고 1부터 저장함
 answer = []
 
 def print_answer():
@@ -12,8 +12,8 @@ def choose(curr_num):
         print_answer()
         return
     
-    for i in range(i,n+1):
-        if visited[i] == False :
+    for i in range(1,n+1):
+        if visited[i] == True :
             continue
         visited[i] = True
         answer.append(i)
@@ -22,3 +22,5 @@ def choose(curr_num):
 
         answer.pop()
         visited[i] = False
+
+choose(1)
