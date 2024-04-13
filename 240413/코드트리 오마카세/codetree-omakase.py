@@ -7,13 +7,18 @@ customer_table = [[None,0] for _ in range(L)]
 t = 0
 
 def eat(Sushi_table, customer_table):
-    new_Sushi_table = [i for i in Sushi_table]
-    for i in range(L):
-        for j in range(len(Sushi_table)):
-            if customer_table[i][0] == Sushi_table[j][0] and customer_table[i][0]!=None:
+    # Use a list comprehension to build a new list excluding the eaten sushi
+    new_Sushi_table = []
+    for j in range(len(Sushi_table)):
+        sushi_eaten = False
+        for i in range(L):
+            if customer_table[i][0] == Sushi_table[j][0] and customer_table[i][0] is not None:
                 if i == Sushi_table[j][1]:
                     customer_table[i][1] -= 1
-                    new_Sushi_table.pop(j)
+                    sushi_eaten = True
+                    break
+        if not sushi_eaten:
+            new_Sushi_table.append(Sushi_table[j])
 
     return new_Sushi_table, customer_table
 
