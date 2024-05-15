@@ -21,8 +21,8 @@ for i in range(1,n):
             continue
         if a[i]>a[j]:
             dp[i] = max(dp[i], dp[j]+1)
-        elif a[i] == a[j]:
-            dp[i] = dp[j]
+        else :
+            dp[i] = max(1,dp[i])
 
 
 ans=0
