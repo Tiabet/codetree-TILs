@@ -23,6 +23,8 @@ for i in range(1,n):
             dp[i] = max(dp[i], dp[j]+1)
         elif a[i] == a[j]:
             dp[i] = dp[j]
+        elif a[i] < a[j]:
+            dp[i] = 1
 
 
 ans=0
