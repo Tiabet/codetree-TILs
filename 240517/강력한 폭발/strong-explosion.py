@@ -1,89 +1,42 @@
+from itertools import product
+
+# 폭탄의 종류에 따른 영향 영역
+BOMB_TYPES = [
+    [(0,0), (0,1), (0,-1), (1,0), (-1,0)], # 십자형
+    [(0,0), (1,1), (1,-1), (-1,1), (-1,-1)], # 사각형
+    [(0,0), (1,0), (2,0), (-1,0), (-2,0)]]
+
+def in_bounds(x, y, n):
+    return 0 <= x < n and 0 <= y < n
+
+def calculate_destruction(board, bomb_positions, bomb_types, n):
+    destroyed = set()
+    for (x, y), bomb_type in zip(bomb_positions, bomb_types):
+        for dx, dy in BOMB_TYPES[bomb_type]:
+            nx, ny = x + dx, y + dy
+            if in_bounds(nx, ny, n):
+                destroyed.add((nx, ny))
+    return len(destroyed)
+
+def max_destruction(board, bomb_positions, n):
+    max_destroyed = 0
+    bomb_positions_list = list(bomb_positions)
+    for bomb_types in product(range(len(BOMB_TYPES)), repeat=len(bomb_positions)):
+        destroyed_count = calculate_destruction(board, bomb_positions_list, bomb_types, n)
+        max_destroyed = max(max_destroyed, destroyed_count)
+    return max_destroyed
+
+
 n = int(input())
-
-graph = []
-for _ in range(n):
-    graph.append(list(map(int, input().split())))
-
-answer = 0
-
-bombs = []
-
+board = []
+bomb_positions = set()
+    
 for i in range(n):
+    row = list(map(int, input().split()))
+    board.append(row)
     for j in range(n):
-        if graph[i][j] == 1 :
-            bombs.append((i,j))
-
-def bomb1(x,y):
-    start = max(x-2,0)
-    end = min(x+2,n-1)
-
-    for j in range(start,end+1):
-        visited[j][y] = True
-
-def bomb2(x,y):
-    x_start = max(x-1,0)
-    x_end = min(x+1,n-1)
-    y_start = max(y-1,0)
-    y_end = min(y+1,n-1)
-
-    for i in range(x_start,x_end+1):
-        visited[i][y] = True
-    for j in range(y_start,y_end+1):
-        visited[x][j] = True
-
-def bomb3(x,y):
-    if x == n-1 and 0<y<n-1:
-        visited[x][y], visited[x-1][y-1], visited[x-1][y+1] = True, True, True
-    elif x == 0 and 0<y<n-1 :
-        visited[x][y], visited[x+1][y-1], visited[x+1][y+1] = True, True, True
-    elif 0<x<n-1 and y==n-1:
-        visited[x][y], visited[x-1][y-1], visited[x+1][y-1] = True, True, True
-    elif 0<x<n-1 and y==0 :
-        visited[x][y], visited[x+1][y-1], visited[x+1][y+1] = True, True, True
-
-    elif x == n-1 and y == 0:
-        visited[x][y], visited[x-1][y+1] = True, True
-    elif x == n-1 and y == n-1 :
-        visited[x][y], visited[x-1][y-1] = True, True
-    elif x == 0 and y == 0 :
-        visited[x][y] , visited[x+1][y+1] = True, True
-    elif x==0 and y==n-1:
-        visited[x][y],visited[x+1][y-1] = True, True
-    else :
-        visited[x][y],visited[x-1][y+1], visited[x-1][y-1],visited[x+1][y+1], visited[x+1][y-1] = True, True, True, True, True
-def bomb(cur_nums):
-    global answer, visited
-    if len(cur_nums) == len(bombs):
-        visited = [[False for _ in range(n)] for _ in range(n)]
-        cur_shot = 0
-        for num in range(len(cur_nums)):
-            i,j = bombs[num]
-            if cur_nums[num] == 1 :
-                bomb1(i,j)
-
-            elif cur_nums[num] == 2:
-               bomb2(i,j)
-
-            elif cur_nums[num] == 3:
-                bomb3(i,j)
-                #cur_shot-=2
-
-        # cur_shot = 0
-        for i in range(n):
-            for j in range(n):
-                if visited[i][j] == True:
-                    cur_shot+=1
-        answer = max(answer,cur_shot)
-        # print(cur_shot)
-        #visited = [[False for _ in range(n)] for _ in range(n)]
-        #print(answer)
-        return 
-
-    for i in range(1,4):
-        cur_nums.append(i)
-        bomb(cur_nums)
-        cur_nums.pop()
-
-bomb([])
-
-print(answer)
+        if row[j] == 1:
+            bomb_positions.add((i, j))
+    
+result = max_destruction(board, bomb_positions, n)
+print(result)
