@@ -32,13 +32,25 @@ def bomb2(x,y):
         visited[x][j] = True
 
 def bomb3(x,y):
-    x_start = max(x-1,0) 
-    x_end = min(x+1,n-1) 
-    y_start = max(y-1,0) 
-    y_end = min(y+1,n-1) 
+    if x == n-1 and 0<y<n-1:
+        visited[x][y], visited[x-1][y-1], visited[x-1][y+1] = True, True, True
+    elif x == 0 and 0<y<n-1 :
+        visited[x][y], visited[x+1][y-1], visited[x+1][y+1] = True, True, True
+    elif 0<x<n-1 and y==n-1:
+        visited[x][y], visited[x-1][y-1], visited[x+1][y-1] = True, True, True
+    elif 0<x<n-1 and y==0 :
+        visited[x][y], visited[x+1][y-1], visited[x+1][y+1] = True, True, True
 
-    visited[x_start][y_start], visited[x_end][y_start], visited[x][y], visited[x_start][y_end], visited[x_end][y_end] = True, True, True, True, True
-
+    elif x == n-1 and y == 0:
+        visited[x][y], visited[x-1][y+1] = True, True
+    elif x == n-1 and y == n-1 :
+        visited[x][y], visited[x-1][y-1] = True, True
+    elif x == 0 and y == 0 :
+        visited[x][y] , visited[x+1][y+1] = True, True
+    elif x==0 and y==n-1:
+        visited[x][y],visited[x+1][y-1] = True, True
+    else :
+        visited[x][y],visited[x-1][y+1], visited[x-1][y-1],visited[x+1][y+1], visited[x+1][y-1] = True, True, True, True, True
 def bomb(cur_nums):
     global answer, visited
     if len(cur_nums) == len(bombs):
@@ -54,7 +66,7 @@ def bomb(cur_nums):
 
             elif cur_nums[num] == 3:
                 bomb3(i,j)
-                cur_shot-=2
+                #cur_shot-=2
 
         # cur_shot = 0
         for i in range(n):
