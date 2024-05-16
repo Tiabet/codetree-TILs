@@ -32,10 +32,10 @@ def bomb2(x,y):
         visited[x][j] = True
 
 def bomb3(x,y):
-    x_start = max(x-1,0)
-    x_end = min(x+1,n-1)
-    y_start = max(y-1,0)
-    y_end = min(y+1,n-1)
+    x_start = max(x-1,0) 
+    x_end = min(x+1,n-1) 
+    y_start = max(y-1,0) 
+    y_end = min(y+1,n-1) 
 
     visited[x_start][y_start], visited[x_end][y_start], visited[x][y], visited[x_start][y_end], visited[x_end][y_end] = True, True, True, True, True
 
@@ -43,7 +43,7 @@ def bomb(cur_nums):
     global answer, visited
     if len(cur_nums) == len(bombs):
         visited = [[False for _ in range(n)] for _ in range(n)]
-        
+        cur_shot = 0
         for num in range(len(cur_nums)):
             i,j = bombs[num]
             if cur_nums[num] == 1 :
@@ -54,15 +54,16 @@ def bomb(cur_nums):
 
             elif cur_nums[num] == 3:
                 bomb3(i,j)
+                cur_shot-=2
 
-        cur_shot = 0
+        # cur_shot = 0
         for i in range(n):
             for j in range(n):
                 if visited[i][j] == True:
                     cur_shot+=1
         answer = max(answer,cur_shot)
         # print(cur_shot)
-        visited = [[False for _ in range(n)] for _ in range(n)]
+        #visited = [[False for _ in range(n)] for _ in range(n)]
         #print(answer)
         return 
 
