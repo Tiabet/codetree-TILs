@@ -7,7 +7,7 @@ for _ in range(n):
     graph.append(list(map(int, input().split())))
 
 #들어갈 위치 찾기
-row = 0
+row = n-1
 to_stop = False
 for i in range(1,n):
     for j in range(k-1,k+m-1):
