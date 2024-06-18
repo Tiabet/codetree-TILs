@@ -13,11 +13,13 @@ for _ in range(k):
     starts.append(list(map(int, input().split())))
 
 def in_range(x,y):
-    if 0<=x<n and 0<=y<n and graph[x][y]!=1 :
+    if 0<=x<n and 0<=y<n and graph[x][y]==0 :
         return True
     return False
 
+count=0
 def bfs(x,y):
+    global count
 
     visited = [[False for _ in range(n)] for _ in range(n)]
 
@@ -25,6 +27,7 @@ def bfs(x,y):
     queue.append((x,y))
     visited[x][y] = True
     graph[x][y] = 2
+    count+=1
 
     while queue:
         x,y = queue.popleft()
@@ -37,15 +40,11 @@ def bfs(x,y):
                 queue.append((new_x,new_y))
                 visited[new_x][new_y] = True
                 graph[new_x][new_y] = 2
+                count+=1
 
 for start in starts :
     x,y = start[0]-1,start[1]-1
-    bfs(x,y)
-
-count=0
-for i in range(n):
-    for j in range(n):
-        if graph[i][j] == 2 :
-            count+=1
+    if graph[x][y] == 0:
+        bfs(x,y)
 
 print(count)
