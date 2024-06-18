@@ -23,6 +23,8 @@ def bfs(x,y):
 
     queue = deque()
     queue.append((x,y))
+    visited[x][y] = True
+    graph[x][y] = 2
 
     while queue:
         x,y = queue.popleft()
