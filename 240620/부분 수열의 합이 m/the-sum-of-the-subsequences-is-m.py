@@ -7,10 +7,11 @@ INT_MAX = sys.maxsize
 arr = list(map(int, input().split()))
 
 dp = [0] * (sum(arr)+1)
+
 for i in range(1,sum(arr)+1):
     dp[i] = INT_MAX
 
-for i in range(n):
+for i in range(0,n):
     for j in range(sum(arr),-1,-1):
         if j >=arr[i]:
             if dp[j - arr[i]] == INT_MAX:
