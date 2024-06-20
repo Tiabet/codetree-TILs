@@ -17,4 +17,7 @@ for i in range(n):
                 continue
         dp[j] = min(dp[j],dp[j-arr[i]]+1)
 
-print(dp[m])
+answer = dp[m]
+if answer == INT_MAX:
+    answer = -1
+print(answer)
