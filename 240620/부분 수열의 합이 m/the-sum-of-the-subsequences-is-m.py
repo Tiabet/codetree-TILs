@@ -16,7 +16,8 @@ for i in range(0,n):
         if j >=arr[i]:
             if dp[j - arr[i]] == INT_MAX:
                 continue
-        dp[j] = min(dp[j],dp[j-arr[i]]+1)
+            dp[j] = min(dp[j],dp[j-arr[i]]+1)
+        # print(j, dp[j])
 
 # print(dp)
 answer = dp[m]
