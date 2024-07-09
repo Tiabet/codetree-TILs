@@ -12,10 +12,13 @@ for i in range(n):
     value = tmp[idx]
     count=0
     while idx < n-1 :
-        if tmp[idx] == tmp[idx+1] and tmp[idx] == value:
-            # print('두번째',i)
+        if tmp[idx] == tmp[idx+1] and count==0:
+            # print('첫번째',i)
             value = tmp[idx+1]
             count+=1
+        elif tmp[idx] == tmp[idx+1] and count>0:
+            if tmp[idx]==value:
+                count+=1
         idx+=1
 
     if count >= m-1:
@@ -30,10 +33,13 @@ for i in range(n):
     count=0
     value = tmp[idx]
     while idx < n-1 :
-        if tmp[idx] == tmp[idx+1] and tmp[idx] == value:
-            # print('두번째',i)
+        if tmp[idx] == tmp[idx+1] and count==0:
+            # print('첫번째',i)
             value = tmp[idx+1]
             count+=1
+        elif tmp[idx] == tmp[idx+1] and count>0:
+            if tmp[idx]==value:
+                count+=1
         idx+=1
     if count >= m-1:
         result+=1
