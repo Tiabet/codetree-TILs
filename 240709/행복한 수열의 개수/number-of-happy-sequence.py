@@ -33,7 +33,7 @@ for i in range(n):
     count=0
     temp=0
     while idx < n-1 :
-        if tmp[idx] == tmp[idx+1] and:
+        if tmp[idx] == tmp[idx+1] :
             # print('첫번째',i)
             temp+=1
             if temp>count:
