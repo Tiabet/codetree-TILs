@@ -9,11 +9,15 @@ result = 0
 for i in range(n):
     tmp = graph[i]
     idx = 0
+    value = tmp[idx]
     count=0
     while idx < n-1 :
-        if tmp[idx] == tmp[idx+1]:
+        if tmp[idx] == tmp[idx+1] and tmp[idx] == value:
+            # print('두번째',i)
+            value = tmp[idx+1]
             count+=1
         idx+=1
+
     if count >= m-1:
         result+=1
 
@@ -24,9 +28,11 @@ for i in range(n):
     
     idx = 0
     count=0
+    value = tmp[idx]
     while idx < n-1 :
-        if tmp[idx] == tmp[idx+1]:
-            
+        if tmp[idx] == tmp[idx+1] and tmp[idx] == value:
+            # print('두번째',i)
+            value = tmp[idx+1]
             count+=1
         idx+=1
     if count >= m-1:
