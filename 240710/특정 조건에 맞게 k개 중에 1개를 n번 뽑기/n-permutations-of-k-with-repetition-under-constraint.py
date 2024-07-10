@@ -5,6 +5,13 @@ lst = [i+1 for i in range(k)]
 answer = []
 
 def print_answer():
+    same_count=0
+    first_value = answer[-1]
+    for elem in answer:
+        if elem==first_value:
+            same_count+=1
+    if same_count == n and n>=2:
+        return
     for elem in answer:
         print(elem, end = " ")
     print()
