@@ -7,11 +7,12 @@ answer = []
 def print_answer():
     same_count=0
     tmp=0
-    first_value = answer[-1]
+    first_value = answer[0]
     for elem in answer:
         if elem==first_value:
             tmp+=1
         else :
+            first_value = elem
             tmp=0
         same_count=max(same_count,tmp)
 
