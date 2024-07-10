@@ -10,7 +10,7 @@ def print_answer():
     for elem in answer:
         if elem==first_value:
             same_count+=1
-    if same_count == n and n>=2:
+    if same_count == n and n>=3:
         return
     for elem in answer:
         print(elem, end = " ")
