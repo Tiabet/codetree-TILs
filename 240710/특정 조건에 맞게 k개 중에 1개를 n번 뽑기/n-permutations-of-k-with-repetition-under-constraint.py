@@ -12,7 +12,7 @@ def print_answer():
             tmp+=1
         else :
             value = elem
-            tmp=0
+            tmp=1
 
     if tmp>=3:
         return
