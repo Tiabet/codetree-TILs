@@ -14,7 +14,7 @@ def print_answer():
         else :
             value = elem
             tmp=1
-        same_count = max(same_count)
+        same_count = max(same_count,tmp)
 
     if same_count>=3:
         return
