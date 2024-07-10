@@ -5,6 +5,7 @@ lst = [i+1 for i in range(k)]
 answer = []
 
 def print_answer():
+    same_count=0
     tmp=0
     value = answer[0]
     for elem in answer:
@@ -13,8 +14,9 @@ def print_answer():
         else :
             value = elem
             tmp=1
+        same_count = max(same_count)
 
-    if tmp>=3:
+    if same_count>=3:
         return
     for elem in answer:
         print(elem, end = " ")
