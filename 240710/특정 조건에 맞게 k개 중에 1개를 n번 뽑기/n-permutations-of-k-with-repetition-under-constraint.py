@@ -16,7 +16,7 @@ def print_answer():
             tmp=0
         same_count=max(same_count,tmp)
 
-    if same_count>=3:
+    if same_count>=2:
         return
     for elem in answer:
         print(elem, end = " ")
