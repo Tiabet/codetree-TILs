@@ -6,11 +6,16 @@ answer = []
 
 def print_answer():
     same_count=0
+    tmp=0
     first_value = answer[-1]
     for elem in answer:
         if elem==first_value:
-            same_count+=1
-    if same_count == n and n>=3:
+            tmp+=1
+        else :
+            tmp=0
+        same_count=max(same_count,tmp)
+
+    if same_count>=3:
         return
     for elem in answer:
         print(elem, end = " ")
