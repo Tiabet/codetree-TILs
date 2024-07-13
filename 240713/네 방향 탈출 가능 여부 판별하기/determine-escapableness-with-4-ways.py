@@ -15,7 +15,7 @@ def in_range(x,y):
         return False
 
 def can_go(x,y):
-    if in_range(x,y) and visited[x][y] == False:
+    if in_range(x,y) and visited[x][y] == False and graph[x][y]==1:
         return True
     else:
         return False
