@@ -5,14 +5,14 @@ ends = []
 
 for _ in range(m):
     start, end = map(int, input().split())
-    starts.append(starts)
+    starts.append(start)
     ends.append(end)
 
-graph = [[] for _ in range(m+1)]
+graph = [[] for _ in range(n+1)]
 
 for start, end in zip(starts,ends):
     graph[start].append(end)
-    graph[end].append[start]
+    graph[end].append(start)
     
 visited = [False for _ in range(n+1)]
 
