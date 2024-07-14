@@ -22,11 +22,14 @@ def can_go(x,y,new_x,new_y):
 
 dxs, dys = [0,0,-1,1],[1,-1,0,0]
 
+total_visited = [[False for _ in range(n)] for _ in range(n)]
+
 def bfs(x,y):
     queue = deque()
-    visited = [[False for _ in range(n)] for _ in range(n)]
+    visited = total_visited
     queue.append((x,y))
     visited[x][y] = True
+    total_visited[x][y] = True
     max_value = 0
     while queue:
         
