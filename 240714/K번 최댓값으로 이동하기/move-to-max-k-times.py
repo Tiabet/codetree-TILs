@@ -54,8 +54,10 @@ def bfs(x,y):
                 break
         if found:
             break
-
-    return (result_x,result_y)
+    if (result_x, result_y)>(100,100):
+        return (r,c)
+    else :
+        return (result_x,result_y)
 
 for _ in range(k):
     r,c = bfs(r,c)
