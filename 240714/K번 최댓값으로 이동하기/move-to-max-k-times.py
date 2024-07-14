@@ -15,8 +15,8 @@ def in_range(x,y):
         return True
     return False
 
-def can_go(new_x,new_y):
-    if in_range(new_x,new_y) and graph[r][c]>=graph[new_x][new_y]:
+def can_go(x,y,new_x,new_y):
+    if in_range(new_x,new_y) and graph[x][y]>graph[new_x][new_y]:
         return True
     return False
 
@@ -31,14 +31,14 @@ def bfs(x,y):
     visited[x][y] = True
     total_visited[x][y] = True
     max_value = 0
-    
+
     while queue:
         
-        x,y = queue.pop()
+        x1,y1 = queue.pop()
 
         for dx,dy in zip(dxs,dys):
-            new_x,new_y = x+dx,y+dy
-            if can_go(new_x,new_y) and visited[new_x][new_y] == False:
+            new_x,new_y = x1+dx,y1+dy
+            if can_go(x,y,new_x,new_y) and visited[new_x][new_y] == False:
                 queue.append((new_x,new_y))
                 # print("실행")
                 max_value = max(max_value,graph[new_x][new_y])
@@ -52,7 +52,7 @@ def bfs(x,y):
 
     for i in range(n):
         for j in range(n):
-            if graph[i][j] == max_value:
+            if graph[i][j] == max_value and visited[i][j] == True:
                 found = True
                 result_x,result_y = i,j
                 break
@@ -61,6 +61,7 @@ def bfs(x,y):
     if (result_x, result_y)>(100,100):
         return (r,c)
     else :
+        # print(result_x,result_y)
         return (result_x,result_y)
 
 for _ in range(k):
