@@ -4,8 +4,9 @@ graph = []
 for _ in range(2):
     graph.extend(list(map(int, input().split())))
 
-temp = [graph[-1]]
-graph = graph[:-1]
+t = t%(2*n)
+temp = graph[-t:]
+graph = graph[:-t]
 temp.extend(graph)
 
 for idx, num in enumerate(temp):
