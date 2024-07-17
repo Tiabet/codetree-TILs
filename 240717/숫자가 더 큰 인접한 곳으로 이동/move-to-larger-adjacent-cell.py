@@ -13,7 +13,7 @@ def in_range(x,y):
     else :
         return False
 
-dxs, dys = [1,-1,0,0],[0,0,-1,1]
+dxs, dys = [-1,1,0,0],[0,0,-1,1]
 
 result = []
 result.append(graph[r][c])
