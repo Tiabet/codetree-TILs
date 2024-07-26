@@ -8,4 +8,4 @@ for i in range(1,n):
     dp[i] = dp[i-1]*2 - 1
 
 
-print(dp[n-1])
+print(dp[n-1]%(1000000000+7))
