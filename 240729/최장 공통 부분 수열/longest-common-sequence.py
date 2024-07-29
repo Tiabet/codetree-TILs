@@ -26,4 +26,4 @@ for i in range(1,len_a):
             dp[i][j] = max(dp[i-1][j], dp[i][j-1])
 
 # print(dp)
-print(dp[len_a-1][len_b-1]-1)
+print(dp[len_a-1][len_b-1])
