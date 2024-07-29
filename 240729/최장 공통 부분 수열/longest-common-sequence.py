@@ -6,7 +6,12 @@ len_b = len(B)
 
 dp = [[0 for _ in range(len_b)] for _ in range(len_a)]
 
-dp[0][0] = 1 if A[0]==B[0] else 0
+# dp[0][0] = 1 if A[0]==B[0] else 0
+
+if A[0] == B[0] :
+    dp[0] = [0 for _ in range(len_b)]
+    for i in range(len_a):
+        dp[i][0] = 0
 
 for i in range(1,len_a):
     if A[i]== B[0]:
