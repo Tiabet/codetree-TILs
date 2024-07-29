@@ -16,7 +16,7 @@ for i in range(len_a):
             else :
                 dp[i][j] = 0
 
-        else :
+        elif i !=0 and j !=0 :
             if A[i] == B[j]:
                 dp[i][j] = max(dp[i-1][j], dp[i][j-1]) + 1
             else :
